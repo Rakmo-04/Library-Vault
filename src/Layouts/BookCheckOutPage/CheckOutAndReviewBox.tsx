@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import BookModel from "../../models/BookModel";
-import { link } from "fs";
 
 export const CheckOutAndReviewBox: React.FC<{
   book: BookModel | undefined;
@@ -12,7 +11,7 @@ export const CheckOutAndReviewBox: React.FC<{
 }> = (props) => {
   function buttonRender() {
     if (props.isAuthenticated) {
-      if (props.isCheckedOut && props.currentLoansCount < 5) {
+      if (!props.isCheckedOut && props.currentLoansCount < 5) {
         return (
           <button
             onClick={() => props.checkoutBook()}
@@ -24,7 +23,7 @@ export const CheckOutAndReviewBox: React.FC<{
       } else if (props.isCheckedOut) {
         return (
           <p>
-            <b>Book checked out.Enjoy!!</b>
+            <b>Book checked out. Enjoy!!</b>
           </p>
         );
       } else if (!props.isCheckedOut) {
@@ -37,6 +36,7 @@ export const CheckOutAndReviewBox: React.FC<{
       </Link>
     );
   }
+
   return (
     <div
       className={
@@ -50,9 +50,7 @@ export const CheckOutAndReviewBox: React.FC<{
             books checked out
           </p>
           <hr />
-          {props.book &&
-          props.book.copiesAvailable &&
-          props.book.copiesAvailable > 0 ? (
+          {props.book && props.book.copiesAvailable && props.book.copiesAvailable > 0 ? (
             <h4 className="text-success">Available </h4>
           ) : (
             <h4 className="text-danger">Wait List</h4>
@@ -71,7 +69,7 @@ export const CheckOutAndReviewBox: React.FC<{
         {buttonRender()}
         <hr />
         <p className="mt-3 ">
-          This number can change until placing order has been complete.
+          This number can change until placing the order has been completed.
         </p>
         <p>Sign In to be able to leave a Review</p>
       </div>

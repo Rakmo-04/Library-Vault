@@ -6,7 +6,6 @@ import { CheckOutAndReviewBox } from "./CheckOutAndReviewBox";
 import ReviewModel from "../../models/ReviewModel";
 import { LatestReview } from "./LatestReview";
 import { useOktaAuth } from "@okta/okta-react";
-import { setTimeout } from "timers";
 
 export const BookCheckOutPage = () => {
   const [book, setBook] = useState<BookModel>();
@@ -14,7 +13,6 @@ export const BookCheckOutPage = () => {
   const [httpError, setHttpError] = useState(null);
 
   //Review State
-
   const [reviews, setReviews] = useState<ReviewModel[]>([]);
   const [totalStars, setTotalStars] = useState(0);
   const [isLoadingReview, setIsLodingReview] = useState(true);
@@ -62,7 +60,7 @@ export const BookCheckOutPage = () => {
       setIsLoadingBook(false);
       setHttpError(error.message);
     });
-  }, []);
+  }, [isCheckedOut]);
 
   useEffect(() => {
     const fetchBookReviews = async () => {
@@ -117,7 +115,7 @@ export const BookCheckOutPage = () => {
         const requestOptions = {
           method: "GET",
           headers: {
-            Authorization: `Bearer${authState.accessToken?.accessToken}`,
+            Authorization: `Bearer ${authState.accessToken?.accessToken}`,
             "Content-Type": "application/json",
           },
         };
@@ -144,8 +142,8 @@ export const BookCheckOutPage = () => {
         const requestOptions = {
           method: "GET",
           headers: {
-            Authorization: `Bearer${authState.accessToken?.accessToken}`,
-            "Content-type": "application/json",
+            Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+            "Content-Type": "application/json",
           },
         };
         const bookCheckedOut = await fetch(url, requestOptions);
@@ -187,7 +185,7 @@ export const BookCheckOutPage = () => {
     const requestOptions = {
       method: "PUT",
       headers: {
-        Authorization: `Bearer${authState?.accessToken?.accessToken}`,
+        Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
         "Content-Type": "application/json",
       },
     };
