@@ -77,16 +77,18 @@ export const HistoryPage = () => {
                                         {history.img ? 
                                             <img src={history.img} width='123' height='196' alt='Book' />
                                             :
-                                            <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} 
-                                                width='123' height='196' alt='Default'/>
-                                        }
+                                        //     <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} 
+                                        //         width='123' height='196' alt='Default'/>
+                                        <></>
+                                         }
                                     </div>
                                     <div className='d-lg-none d-flex justify-content-center align-items-center'>
                                         {history.img ? 
                                             <img src={history.img} width='123' height='196' alt='Book' />
                                             :
-                                            <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} 
-                                                width='123' height='196' alt='Default'/>
+                                        //     <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')} 
+                                        //         width='123' height='196' alt='Default'/>
+                                        <></>
                                         }
                                     </div>
                                 </div>
